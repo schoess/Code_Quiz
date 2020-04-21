@@ -1,0 +1,27 @@
+/*
+=======================
+Typography
+=======================
+*/
+
+#instructions {
+    text-align: center;
+}
+
+/*
+=======================
+Body Styles
+=======================
+*/
+
+.btn-center {
+    justify-content: center;
+    margin: 20px;
+}
+
+.main-heading {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
