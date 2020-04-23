@@ -11,7 +11,7 @@ var totalScore = 0,
         correctAnswer: "Chrome dev tools"
     },
     {
-        question: "Where will yuou find most of the answers to the questions you will have in your coding career?",
+        question: "Where will you find most of the answers to the questions you will have in your coding career?",
         choices: ["Teachers", "Coworkers", "User manual", "The Internet"],
         correctAnswer: "The Internet"
     },
@@ -32,7 +32,7 @@ function correctGuess (i) {
     var updatePage = ['<div id="answerDiv">' +
         '<h1>Correct!<h1>' +
         '<h2>Total Score: ' + totalScore + '</h2></div>'], // 
-    whereToPut = updatePage[0].length -6; 
+    whereToPut = updatePage[0].length; 
 
     if(totalScore < 4){
         var whatToPut = '<button type="button" id="nextButton" class="btn btn-primary">Next Question</button>';
@@ -83,12 +83,12 @@ function incorrectGuess(i) {
 
 function question(i) {
     mainContent.html('<div id="questionDiv">' +
-        '<h1>Question ' + (i + 1) + '<h1>' +
-        '<h2>' + allQuestions[i].question + '</h2>' +
-        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[0] + '" checked="yes">' + allQuestions[i].choices[0] + '</input>' +
-        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[1] + '">' + allQuestions[i].choices[1] + '</input>' +
-        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[2] + '">' + allQuestions[i].choices[2] + '</input>' +
-        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[3] + '">' + allQuestions[i].choices[3] + '</input>' +
+        '<h2>Question ' + (i + 1) + '<h2>' +
+        '<h3>' + allQuestions[i].question + '</h3>' +
+        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[0] + '" checked="yes">' + allQuestions[i].choices[0] + '</input>' + '<br />' +
+        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[1] + '">' + allQuestions[i].choices[1] + '</input>' + '<br />' +
+        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[2] + '">' + allQuestions[i].choices[2] + '</input>' + '<br />' +
+        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[3] + '">' + allQuestions[i].choices[3] + '</input>' + '<br />' +
         '<button type="button" class="btn btn-primary" id="submitButton">Submit</button>' + '</div>'
         
     );
