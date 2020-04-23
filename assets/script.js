@@ -28,5 +28,8 @@ function correctAnswer (i) {
     totalScore ++;
     questionNumber ++;
 
-    var updatePage = []
+    var updatePage = ['<div id="answerDiv">' +
+    '<h1>Correct!<h1>' +
+    '<h2>Total Score: ' + totalScore + '</h2></div>'
+]
 }
