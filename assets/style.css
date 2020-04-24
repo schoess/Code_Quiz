@@ -4,6 +4,12 @@ Typography
 =======================
 */
 
+#code-quiz {
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
 /*
 =======================
 Body Styles
@@ -26,4 +32,8 @@ button {
 	margin-left: auto;
 	margin-right: auto;
 	margin: 20px;
+}
+
+.radiobtn {
+    color: red;
 }

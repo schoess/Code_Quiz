@@ -29,36 +29,20 @@ function correctGuess (i) {
     totalScore ++; 
     questionNumber ++;
 
-    var updatePage = ['<div id="answerDiv">' +
-        '<h1>Correct!<h1>' +
-        '<h2>Total Score: ' + totalScore + '</h2></div>'], // 
-    whereToPut = updatePage[0].length; 
+    var updatePage = question(questionNumber);
 
-    if(totalScore < 4){
-        var whatToPut = '<button type="button" id="nextButton" class="btn btn-primary">Next Question</button>';
+    localStorage.setItem("scoreCount", totalScore);
+    
+    $('#mainContent').html(updatePage); 
 
+    if(questionNumber < 4){
+        var updatePage = question(questionNumber);
+    
+        $('#mainContent').html(updatePage); 
 
-        
-        updatePage = [updatePage.slice(0, whereToPut), whatToPut, updatePage.slice(whereToPut)].join('');
-
-        $('#mainContent').html(updatePage);
-
-        $('#nextButton').on('click', function() { 
-                question(questionNumber);
-        });
     } else {
-        
-        var whatToPut = '<h1>Congratulations, you Win!</h1><button id="restartButton">Play Again</button>';
 
-        updatePage = [updatePage.slice(0, whereToPut), whatToPut, updatePage.slice(whereToPut)].join('');
-
-        $('#mainContent').html(updatePage);
-
-        $('#restartButton').on('click', function() {
-            questionNumber = 0;
-            totalScore = 0;
-            question(questionNumber);
-        });
+        $('#mainContent').html("<p>Right answer</p>");
     }
 
     
@@ -79,10 +63,10 @@ function question(i) {
     mainContent.html('<div id="questionDiv">' +
         '<h2>Question ' + (i + 1) + '<h2>' +
         '<h3>' + allQuestions[i].question + '</h3>' +
-        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[0] + '" checked="yes">' + allQuestions[i].choices[0] + '</input>' + '<br />' +
-        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[1] + '">' + allQuestions[i].choices[1] + '</input>' + '<br />' +
-        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[2] + '">' + allQuestions[i].choices[2] + '</input>' + '<br />' +
-        '<input type="radio" name="questionChoices" value="' + allQuestions[i].choices[3] + '">' + allQuestions[i].choices[3] + '</input>' + '<br />' +
+        '<input type="radio" class="radiobtn" name="questionChoices" value="' + allQuestions[i].choices[0] + '" checked="yes">' + allQuestions[i].choices[0] + '</input>' + '<br />' +
+        '<input type="radio" class="radiobtn" name="questionChoices" value="' + allQuestions[i].choices[1] + '">' + allQuestions[i].choices[1] + '</input>' + '<br />' +
+        '<input type="radio" class="radiobtn" name="questionChoices" value="' + allQuestions[i].choices[2] + '">' + allQuestions[i].choices[2] + '</input>' + '<br />' +
+        '<input type="radio" class="radiobtn" name="questionChoices" value="' + allQuestions[i].choices[3] + '">' + allQuestions[i].choices[3] + '</input>' + '<br />' +
         '<button type="button" class="btn btn-primary" id="submitButton">Submit</button>' + '</div>'
         
     );
