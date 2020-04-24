@@ -67,19 +67,13 @@ function correctGuess (i) {
 function incorrectGuess(i) {
     
     totalScore = 0;
-    questionNumber = 0;
+    questionNumber ++;
 
-    var updatePage = ['<div id="answerDiv"></div>' +
-        '<h1>Wrong!<h1>' +
-        '<button id="restartButton">Restart</button>'
-        ];
+    var updatePage = question(questionNumber);
     
     $('#mainContent').html(updatePage);
 
-    $('#restartButton').on('click', function() {
-        question(questionNumber);
-    });
-};
+    };
 
 function question(i) {
     mainContent.html('<div id="questionDiv">' +
