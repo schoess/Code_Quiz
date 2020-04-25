@@ -117,18 +117,14 @@ function displayScore() {
     $('#hiScoreSubmitBtn').on('click', function(event) {
         localStorage.setItem(initialsBox[0].value, totalScore);
         mainContent.html('<h1>' + initialsBox[0].value + ' scored a ' + totalScore + '!' + '</h1>');
-
-
-        // create new variable that = loacal storage "initials" and "total score"
-        // add created var to high scores list
-       // mainContent.append(local storage stuff)
-    })
+    });
     var initialsBox = $("#initialsBox");
-    // var notWorkingBox = document.getElementById("initialsBox");
-    //    console.log(notWorkingBox.value);
-    
-
 };
 //calls function for quiz to run
 
 question(questionNumber);
+
+
+//Ran out of time to do the timer, been working on it all week. 
+//I will submit and after feedback will need some 1 on 1 help with set interval and applying it to this page.
+//I have a lot of hours into this thing... :/
