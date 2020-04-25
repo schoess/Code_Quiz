@@ -25,10 +25,12 @@ var totalScore = 0,
 
 var mainContent = $('#mainContent'); 
 
-function correctGuess (i) { 
+function correctGuess() { 
     totalScore ++; 
     questionNumber ++;
 
+    // check if questionionNumber is within range
+    // if not, do somethin else
     var updatePage = question(questionNumber);
 
     localStorage.setItem("scoreCount", totalScore);
@@ -41,25 +43,28 @@ function correctGuess (i) {
         $('#mainContent').html(updatePage); 
 
     } else {
-
-        $('#mainContent').html("<p>Right answer</p>");
+        console.log("wrong");
     }
 
     
 };
 
-function incorrectGuess(i) {
+function incorrectGuess() {
     
     totalScore = 0;
     questionNumber ++;
 
+    // if questionNumber is in range go to next question
+    // if not, display score
     var updatePage = question(questionNumber);
     
     $('#mainContent').html(updatePage);
 
     };
 
-function question(i) {
+function question(i) { //displayQuestion
+    // if i is within range, do
+    if (i < 4) {
     mainContent.html('<div id="questionDiv">' +
         '<h2>Question ' + (i + 1) + '<h2>' +
         '<h3>' + allQuestions[i].question + '</h3>' +
@@ -67,18 +72,33 @@ function question(i) {
         '<input type="radio" class="radiobtn" name="questionChoices" value="' + allQuestions[i].choices[1] + '">' + allQuestions[i].choices[1] + '</input>' + '<br />' +
         '<input type="radio" class="radiobtn" name="questionChoices" value="' + allQuestions[i].choices[2] + '">' + allQuestions[i].choices[2] + '</input>' + '<br />' +
         '<input type="radio" class="radiobtn" name="questionChoices" value="' + allQuestions[i].choices[3] + '">' + allQuestions[i].choices[3] + '</input>' + '<br />' +
-        '<button type="button" class="btn btn-primary" id="submitButton">Submit</button>' + '</div>'
-        
-    );
+        '<button type="button" class="btn btn-primary" id="submitButton">Submit</button>' + '</div>' );
+    } else {
+        chooseNextScreen();
+    };
     
 
     $('#submitButton').on('click', function() {
+        
         if($('input:radio[name=questionChoices]:checked').val() === allQuestions[i].correctAnswer && i < 4) {
             correctGuess();
         } else {
             incorrectGuess();
-        }
+        } 
+        
     });
 };
+
+ function chooseNextScreen(){
+    if (questionNumber < 4) {
+        question();
+    } else {
+        displayScore();
+    }
+    };
+
+function displayScore() {
+    $('#mainContent').html("<p>Right answer</p>");
+    }
 
 question(questionNumber);
