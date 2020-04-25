@@ -42,8 +42,6 @@ function correctGuess() {
     
         $('#mainContent').html(updatePage); 
 
-    } else {
-        console.log("wrong");
     }
 
     
@@ -98,7 +96,8 @@ function question(i) { //displayQuestion
     };
 
 function displayScore() {
-    $('#mainContent').html("<p>Right answer</p>");
-    }
+    $('#mainContent').html('<h2>Well Done!</h2>' + '<h4> You scored ' + totalScore + '!</h4>' + '<h4>Please enter your initials for the highscores</h4>' +
+    '<hr />' + '<input class="form-control" type="text" placeholder="Default input">' + '<button type="button" class="btn btn-primary" id="submitButton">Submit</button>');
+    };
 
 question(questionNumber);
