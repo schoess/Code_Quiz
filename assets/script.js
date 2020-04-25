@@ -1,5 +1,8 @@
+//total score var that is defined in local storage and question number var that will be incremented later on
 var totalScore = 0, 
-	questionNumber = 0,
+    questionNumber = 0,
+    i = 0;
+// questions object
 	allQuestions = [{
         question: "What do you call a variable with multiple boolean values?",
         choices: ["variable", "object", "array", "let"],
@@ -24,7 +27,7 @@ var totalScore = 0,
 
 
 var mainContent = $('#mainContent'); 
-
+//logic if correct answer is chosen
 function correctGuess() { 
     totalScore ++; 
     questionNumber ++;
@@ -44,7 +47,7 @@ function correctGuess() {
 
     
 };
-
+//logic if incorrect answer is chosen
 function incorrectGuess() {
     
     totalScore = 0;
@@ -56,6 +59,20 @@ function incorrectGuess() {
 
     };
 
+//starting screen
+        function welcome() {
+    mainContent.html('<h2>Welcome to the Code Quiz!</h2>' + '<br />' + 
+    '<h5>If you think you have what it takes, go ahead and click the start button to see how you do!</h5>' 
+    + '<button type="button" class="btn btn-primary" id="startQuizBtn">Start Quiz!</button>');
+    document.getElementById("startQuizBtn").addEventListener("click", function() {question(i)});
+};
+
+
+//loads start page to begin with
+window.onload = function () {
+    this.welcome();
+};
+//logic to run through questions object
 function question(i) { 
     if (i < 4) {
     mainContent.html('<div id="questionDiv">' +
@@ -70,7 +87,7 @@ function question(i) {
         chooseNextScreen();
     };
     
-
+//submit button at the bottom of the questions
     $('#submitButton').on('click', function() {
         
         if($('input:radio[name=questionChoices]:checked').val() === allQuestions[i].correctAnswer && i < 4) {
@@ -82,6 +99,7 @@ function question(i) {
     });
 };
 
+//logic to decide what screen to append next
  function chooseNextScreen(){
     if (questionNumber < 4) {
         question();
@@ -93,11 +111,10 @@ function question(i) {
 // end screen of quiz
 function displayScore() {
     //Text, form and button on end page
-    $('#mainContent').html('<h2>Well Done!</h2>' + '<h4> You scored ' + totalScore + '!</h4>' + '<h4>Please enter your initials for the highscores</h4>' +
-    '<hr />' + '<form>' + '<input class="form-control" id="initialsBox" type="text" placeholder="Your Initials">' + '<button type="button" class="btn btn-primary" id="hiScoreSubmitBtn">Submit</button>' + '</form>');
+    $('#mainContent').html('<h2>Well Done!</h2>' + '<h4> You scored ' + totalScore + '!</h4>' + '<h4>Please enter your name for the end screen</h4>' +
+    '<hr />' + '<form>' + '<input class="form-control" id="initialsBox" type="text" placeholder="Your Name">' + '<button type="button" class="btn btn-primary" id="hiScoreSubmitBtn">Submit</button>' + '</form>');
     // Submit button on end screen of quiz
     $('#hiScoreSubmitBtn').on('click', function(event) {
-        console.log(initialsBox[0].value);
         localStorage.setItem(initialsBox[0].value, totalScore);
         mainContent.html('<h1>' + initialsBox[0].value + ' scored a ' + totalScore + '!' + '</h1>');
 
@@ -113,4 +130,5 @@ function displayScore() {
 
 };
 //calls function for quiz to run
+
 question(questionNumber);
