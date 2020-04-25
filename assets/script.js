@@ -29,8 +29,6 @@ function correctGuess() {
     totalScore ++; 
     questionNumber ++;
 
-    // check if questionionNumber is within range
-    // if not, do somethin else
     var updatePage = question(questionNumber);
 
     localStorage.setItem("scoreCount", totalScore);
@@ -52,16 +50,13 @@ function incorrectGuess() {
     totalScore = 0;
     questionNumber ++;
 
-    // if questionNumber is in range go to next question
-    // if not, display score
     var updatePage = question(questionNumber);
     
     $('#mainContent').html(updatePage);
 
     };
 
-function question(i) { //displayQuestion
-    // if i is within range, do
+function question(i) { 
     if (i < 4) {
     mainContent.html('<div id="questionDiv">' +
         '<h2>Question ' + (i + 1) + '<h2>' +
@@ -95,9 +90,27 @@ function question(i) { //displayQuestion
     }
     };
 
+// end screen of quiz
 function displayScore() {
+    //Text, form and button on end page
     $('#mainContent').html('<h2>Well Done!</h2>' + '<h4> You scored ' + totalScore + '!</h4>' + '<h4>Please enter your initials for the highscores</h4>' +
-    '<hr />' + '<input class="form-control" type="text" placeholder="Default input">' + '<button type="button" class="btn btn-primary" id="submitButton">Submit</button>');
-    };
+    '<hr />' + '<form>' + '<input class="form-control" id="initialsBox" type="text" placeholder="Your Initials">' + '<button type="button" class="btn btn-primary" id="hiScoreSubmitBtn">Submit</button>' + '</form>');
+    // Submit button on end screen of quiz
+    $('#hiScoreSubmitBtn').on('click', function(event) {
+        console.log(initialsBox[0].value);
+        localStorage.setItem(initialsBox[0].value, totalScore);
+        mainContent.html('<h1>' + initialsBox[0].value + ' scored a ' + totalScore + '!' + '</h1>');
 
+
+        // create new variable that = loacal storage "initials" and "total score"
+        // add created var to high scores list
+       // mainContent.append(local storage stuff)
+    })
+    var initialsBox = $("#initialsBox");
+    // var notWorkingBox = document.getElementById("initialsBox");
+    //    console.log(notWorkingBox.value);
+    
+
+};
+//calls function for quiz to run
 question(questionNumber);
