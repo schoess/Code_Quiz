@@ -25,6 +25,9 @@ var totalScore = 0,
     }
 ];
 
+var counterValue = 60;
+
+
 
 var mainContent = $('#mainContent'); 
 //logic if correct answer is chosen
@@ -49,7 +52,7 @@ function correctGuess() {
 };
 //logic if incorrect answer is chosen
 function incorrectGuess() {
-    
+    counterValue -= 5;
     totalScore = 0;
     questionNumber ++;
 
@@ -65,7 +68,17 @@ function incorrectGuess() {
     '<h5>If you think you have what it takes, go ahead and click the start button to see how you do!</h5>' 
     + '<button type="button" class="btn btn-primary" id="startQuizBtn">Start Quiz!</button>');
     document.getElementById("startQuizBtn").addEventListener("click", function() {question(i)});
-};
+    document.getElementById("startQuizBtn").addEventListener("click", function() { 
+    var timer = setInterval(function(){
+        counterValue -= 1;
+        $("#timer-value").html(counterValue)
+    
+        if (counterValue <= 0) {
+            clearInterval(timer)
+            displayScore()
+        } 
+    },1000);
+})};
 
 
 //loads start page to begin with
@@ -73,7 +86,7 @@ window.onload = function () {
     this.welcome();
 };
 //logic to run through questions object
-function question(i) { 
+function question(i) {
     if (i < 4) {
     mainContent.html('<div id="questionDiv">' +
         '<h2>Question ' + (i + 1) + '<h2>' +
