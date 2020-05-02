@@ -68,18 +68,22 @@ function incorrectGuess() {
     '<h5>If you think you have what it takes, go ahead and click the start button to see how you do!</h5>' 
     + '<button type="button" class="btn btn-primary" id="startQuizBtn">Start Quiz!</button>');
     document.getElementById("startQuizBtn").addEventListener("click", function() {question(i)});
-    document.getElementById("startQuizBtn").addEventListener("click", function() { 
-    var timer = setInterval(function(){
-        counterValue -= 1;
-        $("#timer-value").html(counterValue)
-    
-        if (counterValue <= 0) {
-            clearInterval(timer)
-            displayScore()
-        } 
-    },1000);
-})};
+//timer function
+    document.getElementById("startQuizBtn").addEventListener("click", function() {timer()})
+};
 
+function timer() {
+var timer = setInterval(function(){
+    counterValue -= 1;
+    $("#timer-value").html(counterValue)
+
+    if (counterValue <= 0) {
+        clearInterval(timer)
+        displayScore()
+    }
+
+},1000)
+}
 
 //loads start page to begin with
 window.onload = function () {
